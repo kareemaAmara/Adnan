@@ -1,16 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Happy Birthday Eng.Adnan </title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday</title>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100vh;
+    background: linear-gradient(to bottom, #a2d9ff, #ffffff);
+    font-family: Arial, sans-serif;
+}
+.message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5em;
+    font-weight: bold;
+    color: black;
+    text-shadow: 2px 2px 5px #ffffff99;
+    z-index: 10;
+    white-space: nowrap;
+}
+.balloon {
+    position: absolute;
+    width: 60px;
+    height: 80px;
+    border-radius: 50% 50% 45% 45%;
+    opacity: 0.8;
+}
+.balloon::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 40px;
+    background: #555;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+@keyframes float {
+    0% { transform: translateY(100vh); opacity: 1; }
+    100% { transform: translateY(-150px); opacity: 0; }
+}
+</style>
 </head>
 <body>
-    <div class="balloons"></div>
-    <div class="message">
-         <span id="typed-text"></span> 
-    </div>
-    <script src="script.js"></script>
+<div class="balloons"></div>
+<div class="message">
+    🎉 <span id="typed-text"></span> 🎉
+</div>
+<script>
+
+const typedTextElement = document.getElementById('typed-text');
+const text = "Happy Birthday";
+let index = 0;
+function typeEffect() {
+    if (index < text.length) {
+        typedTextElement.textContent += text.charAt(index);
+        index++;
+        setTimeout(typeEffect, 150);
+    }
+}
+typeEffect();
+
+
+const balloonContainer = document.querySelector('.balloons');
+function createBalloon() {
+    const balloon = document.createElement('div');
+    balloon.classList.add('balloon');
+    const colors = ['#ff4b5c', '#ffcd3c', '#4cb5f5', '#7ed957', '#ff66b3', '#ff914d'];
+    balloon.style.background = colors[Math.floor(Math.random() * colors.length)];
+    balloon.style.left = Math.random() * window.innerWidth + 'px';
+    let animationDuration = Math.random() * 5 + 5;
+    balloon.style.animation = `float ${animationDuration}s linear forwards`;
+    balloonContainer.appendChild(balloon);
+    setTimeout(() => balloon.remove(), animationDuration * 1000);
+}
+setInterval(createBalloon, 500);
+</script>
 </body>
 </html>
