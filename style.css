@@ -1,28 +1,112 @@
+
 body {
-  background-color: #fce4ec;
-  font-family: 'Arial', sans-serif;
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #fceabb, #f8b500);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  direction: rtl;
+  color: #333;
 }
 
+
 .card {
-  background-color: #ffffff;
-  border: 2px solid #f06292;
-  border-radius: 10px;
-  padding: 20px 40px;
+  position: relative;
+  background: white;
+  padding: 40px 60px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 10;
+  max-width: 400px;
 }
 
 .card h1 {
-  color: #e91e63;
-  margin-bottom: 10px;
-  font-family: 'Roboto';
+  margin-bottom: 20px;
+  font-size: 2.5rem;
+  color: #ff4b5c;
 }
 
 .card p {
-  color: #333333;
-  font-size: 18px;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+
+.balloon {
+  position: absolute;
+  bottom: -150px;
+  width: 60px;
+  height: 80px;
+  background-color: red;
+  border-radius: 30px 30px 35px 35px;
+  opacity: 0.8;
+  animation: floatUp linear infinite;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+
+.balloon:nth-child(1) {
+  left: 10%;
+  background: #ff4b5c;
+  animation-duration: 7s;
+  animation-delay: 0s;
+}
+.balloon:nth-child(2) {
+  left: 30%;
+  width: 50px;
+  height: 70px;
+  background: #ff9f1c;
+  animation-duration: 8s;
+  animation-delay: 2s;
+}
+.balloon:nth-child(3) {
+  left: 50%;
+  background: #2ec4b6;
+  animation-duration: 6.5s;
+  animation-delay: 1s;
+}
+.balloon:nth-child(4) {
+  left: 70%;
+  width: 55px;
+  height: 75px;
+  background: #e71d36;
+  animation-duration: 7.5s;
+  animation-delay: 3s;
+}
+.balloon:nth-child(5) {
+  left: 85%;
+  background: #011627;
+  animation-duration: 8.2s;
+  animation-delay: 0.5s;
+}
+
+
+@keyframes floatUp {
+  0% {
+    bottom: -150px;
+    transform: translateX(0) rotate(0deg);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateX(20px) rotate(10deg);
+    opacity: 1;
+  }
+  100% {
+    bottom: 110vh;
+    transform: translateX(-20px) rotate(-10deg);
+    opacity: 0;
+  }
+}
+
+
+.balloon:hover {
+  transform: scale(1.2) translateY(-10px);
+  opacity: 1;
+  z-index: 100;
 }
